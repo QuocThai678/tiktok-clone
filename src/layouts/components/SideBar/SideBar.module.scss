@@ -1,0 +1,40 @@
+@property --scroll-color {
+    syntax: '<color>';
+    inherits: true;
+    initial-value: #121212;
+}
+
+.wrapper {
+    width: var(--default-layout-sidebar-width);
+    overflow: hidden overlay;
+    overscroll-behavior-y: contain;
+    perspective: 1px;
+    transform-style: preserve-3d;
+    perspective-origin: right top;
+    top: var(--default-layout-header-height);
+    left: 0;
+    padding-left: 8px;
+    bottom: 0px;
+    background: rgb(18, 18, 18);
+    position: fixed;
+    z-index: 9;
+    transition: --scroll-color 400ms;
+
+    &::-webkit-scrollbar-thumb {
+        background-color: var(--scroll-color);
+    }
+    &:hover {
+        --scroll-color: rgba(255, 255, 255, 0.08);
+    }
+}
+
+.introduce {
+    padding: 20px 8px 24px;
+
+    p {
+        color: #ffffff80;
+        font-size: 16px;
+        line-height: 21px;
+        margin-bottom: 20px;
+    }
+}

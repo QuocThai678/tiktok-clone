@@ -1,0 +1,35 @@
+.info-list {
+}
+
+.info-item:not(:first-child) {
+    margin-top: 15px;
+}
+
+.info-item {
+    h4 {
+        font-size: 15px;
+        line-height: 22px;
+        color: rgba(255, 255, 255, 0.5);
+        font-weight: 700;
+        cursor: pointer;
+    }
+    &.active h4 {
+        color: var(--text-color);
+    }
+}
+
+.info-link {
+    a {
+        color: #ffffff80;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 16px;
+        display: inline-block;
+        margin-right: 6px;
+        margin-top: 5px;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
+}

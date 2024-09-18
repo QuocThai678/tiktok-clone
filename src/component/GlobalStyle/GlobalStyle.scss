@@ -1,0 +1,239 @@
+@import 'normalize.css';
+
+:root {
+    --primary: #ff3b5c;
+    --white: #fff;
+    --black: #000;
+    --text-color: #ffffffe6;
+    --default-layout-header-height: 60px;
+    --default-layout-width: 100%;
+    --default-layout-sidebar-width: 240px;
+    --font-family: 'TikTokFont', san-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+body a,
+body abbr,
+body acronym,
+body address,
+body applet,
+body article,
+body aside,
+body audio,
+body b,
+body big,
+body blockquote,
+body body,
+body canvas,
+body caption,
+body center,
+body cite,
+body code,
+body dd,
+body del,
+body details,
+body dfn,
+body div,
+body dl,
+body dt,
+body em,
+body embed,
+body fieldset,
+body figcaption,
+body figure,
+body footer,
+body form,
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6,
+body header,
+body hgroup,
+body html,
+body i,
+body iframe,
+body img,
+body ins,
+body kbd,
+body label,
+body legend,
+body li,
+body mark,
+body menu,
+body nav,
+body object,
+body ol,
+body output,
+body p,
+body pre,
+body q,
+body ruby,
+body s,
+body samp,
+body section,
+body small,
+body span,
+body strike,
+body strong,
+body sub,
+body summary,
+body sup,
+body table,
+body tbody,
+body td,
+body tfoot,
+body th,
+body thead,
+body time,
+body tr,
+body tt,
+body u,
+body ul,
+body var,
+body video {
+    font-family: var(--font-family);
+}
+
+body {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    color: var(--text-color);
+    text-rendering: optimizeSpeed;
+    background-color: #121212;
+    overflow: scroll;
+}
+
+// Custom schrollbar
+
+html ::-webkit-scrollbar {
+    border-radius: 0px;
+    width: 8px;
+}
+
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+}
+
+html ::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+html ::-webkit-scrollbar-track {
+    border-radius: 0px;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
+}
+
+// Fonts emmbeded
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Regular.woff2');
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: TikTokFont;
+    src: url('/assets/fonts/TikTokFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokDisplayFont-Semibold.woff2');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: TikTokDisplayFont;
+    src: url('/assets/fonts/TikTokDisplayFont-Bold.woff2');
+    font-weight: 700;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.fade-in {
+    animation: fadeIn 0.2s ease-in forwards;
+}
+
+.fade-out {
+    animation: fadeOut 0.2s ease-out forwards;
+}
+
+// custome tippy tooltip
+
+// body {
+//     .tippy-box {
+//         border-radius: 8px;
+//         font-weight: 600;
+//         font-size: 16px;
+//         line-height: 21px;
+//         background-color: rgba(84, 84, 84, 0.92);
+//         color: rgb(255, 255, 255);
+//         padding: 3px 0;
+//     }
+
+//     .tippy-arrow {
+//         color: #252525;
+//     }
+
+//     .tippy-box[data-placement^='bottom'] > .tippy-arrow:before {
+//         top: -8px;
+//     }
+// }
