@@ -3,15 +3,15 @@ import classNames from 'classnames/bind';
 import Menu, { MenuItem } from './Menu';
 
 import SuggestAccount from './SuggestAccount';
-import { SUGGEST_ACCOUNT, CURRENT_USER, USER_NAV_SIDEBAR, NAV_SIDEBAR } from '~/component/constants';
+import { SUGGEST_ACCOUNT, USER_NAV_SIDEBAR, NAV_SIDEBAR } from '~/component/constants';
 import Button from '~/component/Button';
 import Footer from './Footer';
 const cx = classNames.bind(styles);
 
-function SideBar() {
+function SideBar({ isLogin }) {
     let NavSideBar = NAV_SIDEBAR;
 
-    if (CURRENT_USER) {
+    if (isLogin) {
         NavSideBar = USER_NAV_SIDEBAR;
     }
 
@@ -46,7 +46,7 @@ function SideBar() {
                 })}
             </Menu>
 
-            {CURRENT_USER ? (
+            {isLogin ? (
                 <SuggestAccount data={SUGGEST_ACCOUNT} />
             ) : (
                 <div className={cx('introduce')}>

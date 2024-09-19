@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import Tippy from '@tippyjs/react/headless';
@@ -12,6 +13,11 @@ const defaultFn = () => {};
 function Menu({ children, items = {}, onChange = defaultFn, hideOnClick = false }) {
     const [history, setHistory] = useState([items]);
     const current = history[history.length - 1];
+
+    useEffect(() => {
+        setHistory([items]);
+    }, [items]);
+
     const renderItems = () => {
         return current.data.map((item, index) => {
             const isParent = !!item.children;
@@ -65,7 +71,9 @@ function Menu({ children, items = {}, onChange = defaultFn, hideOnClick = false 
                 const tooltipBox = instance.popper;
                 tooltipBox.classList.add('fade-out');
                 setTimeout(() => {
-                    instance.unmount();
+                    if (instance.state && instance.state.isDestroyed === false) {
+                        instance.unmount();
+                    }
                     tooltipBox.classList.remove('fade-in');
                     handleResetMenu();
                 }, 200);

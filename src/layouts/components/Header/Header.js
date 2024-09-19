@@ -11,12 +11,14 @@ import Button from '~/component/Button';
 import style from './Header.module.scss';
 import images from '~/assets/images';
 import Image from '~/component/Images';
-import { CURRENT_USER, MENU_ITEMS, USER_MENU } from '~/component/constants';
+import { MENU_ITEMS, USER_MENU } from '~/component/constants';
 const cx = classNames.bind(style);
 
-function Header() {
+function Header({ isLogin, handleLogout }) {
     const handleMenuChange = (item) => {
-        console.log(item);
+        if (item.title === 'Đăng xuất') {
+            handleLogout();
+        }
     };
 
     return (
@@ -31,7 +33,7 @@ function Header() {
                 <Search />
 
                 <div className={cx('actions')}>
-                    {CURRENT_USER ? (
+                    {isLogin ? (
                         <>
                             <button className={cx('upload-btn')}>
                                 <UploadIcon />
@@ -56,8 +58,8 @@ function Header() {
                         </>
                     )}
 
-                    <Menu onChange={handleMenuChange} items={CURRENT_USER ? USER_MENU : MENU_ITEMS}>
-                        {CURRENT_USER ? (
+                    <Menu onChange={handleMenuChange} items={isLogin ? USER_MENU : MENU_ITEMS}>
+                        {isLogin ? (
                             <Image className={cx('user-avatar')} src={images.avatar} alt="Lê Quốc Thái" />
                         ) : (
                             <MoreIcon className={cx('more-icon')} />
