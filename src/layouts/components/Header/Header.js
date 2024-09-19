@@ -58,12 +58,7 @@ function Header() {
 
                     <Menu onChange={handleMenuChange} items={CURRENT_USER ? USER_MENU : MENU_ITEMS}>
                         {CURRENT_USER ? (
-                            <Image
-                                className={cx('user-avatar')}
-                                src="https://p16-sign-sg.tiktokcdn.com/aweme/1080x1080/tos-alisg-avt-0068/6584be374a433a4c359ef31fd5f5a570.jpeg?lk3s=a5d48078&nonce=44848&refresh_token=a39435c4709c9984d8c9fae8546bbb79&x-expires=1725336000&x-signature=tZDu7tYBpTXuptR8FSiebNEwQVc%3D&shp=a5d48078&shcp=81f88b70"
-                                alt="Lê Quốc Thái"
-                                fallback="https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/77f8ba2df92f7c1f6c6b955cb7fa761d.jpeg?lk3s=a5d48078&nonce=84558&refresh_token=2c12591b6b8dd7c205d414fc85ffa9d2&x-expires=1725379200&x-signature=IRgpnIFtmxruNADEpupwQWuTwcE%3D&shp=a5d48078&shcp=81f88b70"
-                            />
+                            <Image className={cx('user-avatar')} src={images.avatar} alt="Lê Quốc Thái" />
                         ) : (
                             <MoreIcon className={cx('more-icon')} />
                         )}

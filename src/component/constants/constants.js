@@ -21,6 +21,7 @@ import {
     LiveActive,
 } from '~/component/Icons';
 import config from '~/config';
+import images from '~/assets/images';
 export const CURRENT_USER = true;
 export const MENU_ITEMS = {
     data: [
@@ -92,7 +93,7 @@ export const USER_MENU = {
 export const SUGGEST_ACCOUNT = [
     {
         userId: 1,
-        avatar: 'https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-giso/7d0f962983109c71d0908c9dab732f5a~c5_100x100.jpeg?lk3s=a5d48078&nonce=24441&refresh_token=decfc6594dff0cccac078003124b3b2b&x-expires=1726041600&x-signature=XKPjjaBzb9XzpTdRNF0DMs7bRbo%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.soobin,
         nickname: 'yeonbin273',
         name: 'Choi Soobin xinh thế 🍰',
         to: '/@yeonbin273',
@@ -101,7 +102,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 2,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/1832325abc4a6cb979d4d4354fc9d408.jpeg?lk3s=a5d48078&nonce=23821&refresh_token=098ba0e05f3c73989ad413e33efed082&x-expires=1726041600&x-signature=Ik1WbwuosHtHdYYVXpn%2FaYqf7%2BE%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.trinh,
         nickname: 'chinnchinn179',
         name: 'Tuyết Trinh',
         to: '/@chinnchinn179',
@@ -109,7 +110,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 3,
-        avatar: 'https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/7362402064179134496~c5_100x100.jpeg?lk3s=a5d48078&nonce=34082&refresh_token=655b92f785e67bec85ccd11140726aa0&x-expires=1726041600&x-signature=I0M46%2FsBAMKwvc55JDUzo%2F%2ButWI%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.vncat,
         nickname: 'vncatmv',
         name: 'Vietnamese Cat Music Video',
         to: '/@vncatmv',
@@ -117,7 +118,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 4,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/77f8ba2df92f7c1f6c6b955cb7fa761d.jpeg?lk3s=a5d48078&nonce=9147&refresh_token=b4d66fff4ea8761bdfde3a76795cdbf5&x-expires=1726041600&x-signature=tgSZRJQIWJLthj6CeIMHg4WxoRs%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.hongnhi,
         nickname: '_hongnhihihi',
         name: 'Nhi Lê',
         to: '/@_hongnhihihi',
@@ -126,7 +127,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 5,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/8793c1e0777b341c02c046f628ea3071.jpeg?lk3s=a5d48078&nonce=92964&refresh_token=3a8fc353ccbc6ed58a166ba9e4495e17&x-expires=1726041600&x-signature=XJLY1Lb0ODbwPPaoapAjA%2B%2BSyVo%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.meymey,
         nickname: 'meyyyyneh',
         name: 'cột sống bất ổn',
         to: '/@meyyyyneh',
@@ -134,7 +135,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 6,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/b89c59df5e8ad76ced68e6e5d40e1215.jpeg?lk3s=a5d48078&nonce=77793&refresh_token=e9f1e0c5ad8961c663e15eeace7da9fb&x-expires=1726059600&x-signature=rX5cv4BSLP4yZA%2BX33uDq7YNkOA%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.camp,
         nickname: 'odaycocampxinh',
         name: 'Ở Đây Có Camp Xinh 🏕️',
         to: '/@odaycocampxinh',
@@ -142,7 +143,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 7,
-        avatar: 'https://p16-sign-va.tiktokcdn.com/tos-maliva-avt-0068/7339a34c9b93365cbc7e50531fbe49ee~c5_100x100.jpeg?lk3s=a5d48078&nonce=11672&refresh_token=587157089ad975cf46c81f5f503d1d43&x-expires=1726059600&x-signature=yJf2WGftfrURLLEpKiOaw%2FVN8Y0%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.jewcomedy,
         nickname: 'twojewscomedy',
         name: 'twojewscomedy',
         to: '/@twojewscomedy',
@@ -150,7 +151,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 8,
-        avatar: 'https://p16-sign-useast2a.tiktokcdn.com/tos-useast2a-avt-0068-euttp/7331241373636493345~c5_100x100.jpeg?lk3s=a5d48078&nonce=65012&refresh_token=7cd208efafe430ae88397dc2ff5a0097&x-expires=1726059600&x-signature=uKXxDcQdsFNrN%2BU61xAFAOCVa3Y%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.jarcce,
         nickname: 'jarcce',
         name: 'Jarcce',
         to: '/@jarcce',
@@ -159,7 +160,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 9,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/8a38001d4769f37d0959f1ad0b0270cf.jpeg?lk3s=a5d48078&nonce=63059&refresh_token=0338d0e979ae7590990d0f70788719d7&x-expires=1726081200&x-signature=0JUyYlWpHBOv8Jem%2FXpv7Acj3as%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.thole,
         nickname: 'bithole.lt',
         name: 'Bích Thơ Lê',
         to: '/@bithole.lt',
@@ -167,7 +168,7 @@ export const SUGGEST_ACCOUNT = [
 
     {
         userId: 10,
-        avatar: 'https://p16-sign-sg.tiktokcdn.com/aweme/100x100/tos-alisg-avt-0068/d52d05c42b810fec0f57a90ba7bf4fce.jpeg?lk3s=a5d48078&nonce=38247&refresh_token=ca64215622019267579972f6a9bec0a3&x-expires=1726081200&x-signature=W%2FulfIyyWXXHVZF65A7b3FuTpFE%3D&shp=a5d48078&shcp=81f88b70',
+        avatar: images.eira,
         nickname: 'hiaaa1031',
         name: 'Eira🌱',
         to: '/@hiaaa1031',
