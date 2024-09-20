@@ -246,12 +246,7 @@ export const USER_NAV_SIDEBAR = [
         avt: true,
         title: 'Hồ sơ',
         to: '/@_quocthai__',
-        icon: (
-            <Image
-                src="https://p16-sign-sg.tiktokcdn.com/aweme/1080x1080/tos-alisg-avt-0068/6584be374a433a4c359ef31fd5f5a570.jpeg?lk3s=a5d48078&nonce=73144&refresh_token=3851a6ec2ff68637eb30b9b38c8b5156&x-expires=1725980400&x-signature=aIOMI5LzddBWQLTR2zKQRKROMB8%3D&shp=a5d48078&shcp=81f88b70"
-                alt="@_quocthai__"
-            />
-        ),
+        icon: <Image src={images.avatar} alt="@_quocthai__" />,
     },
 ];
 
