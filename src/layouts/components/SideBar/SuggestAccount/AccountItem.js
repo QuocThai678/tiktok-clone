@@ -9,7 +9,7 @@ const cx = classNames.bind(style);
 
 function AccountItem({ data }) {
     return (
-        <Link to={data.to} className={cx('account-item')}>
+        <Link to={`/${data.nickname}`} className={cx('account-item')}>
             <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
 
             <div className={cx('info')}>
@@ -17,7 +17,7 @@ function AccountItem({ data }) {
                     <p>{data.nickname}</p>
                     {data.tick && <Checked />}
                 </div>
-                <p className={cx('name')}>{data.name}</p>
+                <p className={cx('name')}>{`${data.first_name} ${data.last_name}`}</p>
             </div>
         </Link>
     );

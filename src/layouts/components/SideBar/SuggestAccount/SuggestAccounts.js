@@ -9,10 +9,8 @@ function SuggestAccounts({ data }) {
             <p className={cx('label')}>Đề xuất cho bạn</p>
 
             {data.map((user) => (
-                <AccountItem key={user.userId} data={user} />
+                <AccountItem key={user.id} data={user} />
             ))}
-
-            <span className={cx('more')}>Xem thêm</span>
         </div>
     );
 }

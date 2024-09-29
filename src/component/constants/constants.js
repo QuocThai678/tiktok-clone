@@ -23,6 +23,8 @@ import {
 import config from '~/config';
 import images from '~/assets/images';
 export const CURRENT_USER = true;
+export const INIT_PAGE = 1;
+export const PER_PAGE = 5;
 export const MENU_ITEMS = {
     data: [
         {
@@ -89,91 +91,6 @@ export const USER_MENU = {
         },
     ],
 };
-
-export const SUGGEST_ACCOUNT = [
-    {
-        userId: 1,
-        avatar: images.soobin,
-        nickname: 'yeonbin273',
-        name: 'Choi Soobin xinh thế 🍰',
-        to: '/@yeonbin273',
-        tick: true,
-    },
-
-    {
-        userId: 2,
-        avatar: images.trinh,
-        nickname: 'chinnchinn179',
-        name: 'Tuyết Trinh',
-        to: '/@chinnchinn179',
-    },
-
-    {
-        userId: 3,
-        avatar: images.vncat,
-        nickname: 'vncatmv',
-        name: 'Vietnamese Cat Music Video',
-        to: '/@vncatmv',
-    },
-
-    {
-        userId: 4,
-        avatar: images.hongnhi,
-        nickname: '_hongnhihihi',
-        name: 'Nhi Lê',
-        to: '/@_hongnhihihi',
-        tick: true,
-    },
-
-    {
-        userId: 5,
-        avatar: images.meymey,
-        nickname: 'meyyyyneh',
-        name: 'cột sống bất ổn',
-        to: '/@meyyyyneh',
-    },
-
-    {
-        userId: 6,
-        avatar: images.camp,
-        nickname: 'odaycocampxinh',
-        name: 'Ở Đây Có Camp Xinh 🏕️',
-        to: '/@odaycocampxinh',
-    },
-
-    {
-        userId: 7,
-        avatar: images.jewcomedy,
-        nickname: 'twojewscomedy',
-        name: 'twojewscomedy',
-        to: '/@twojewscomedy',
-    },
-
-    {
-        userId: 8,
-        avatar: images.jarcce,
-        nickname: 'jarcce',
-        name: 'Jarcce',
-        to: '/@jarcce',
-        tick: true,
-    },
-
-    {
-        userId: 9,
-        avatar: images.thole,
-        nickname: 'bithole.lt',
-        name: 'Bích Thơ Lê',
-        to: '/@bithole.lt',
-    },
-
-    {
-        userId: 10,
-        avatar: images.eira,
-        nickname: 'hiaaa1031',
-        name: 'Eira🌱',
-        to: '/@hiaaa1031',
-    },
-];
 
 export const NAV_SIDEBAR = [
     {
