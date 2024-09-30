@@ -1,5 +1,15 @@
+import PostList from './PostList';
+import style from './Home.module.scss';
+import classNames from 'classnames/bind';
+
+const cx = classNames.bind(style);
+
 function Home() {
-    return <h2 style={{ height: '2000px' }}>Home Page</h2>;
+    return (
+        <div className={cx('content')}>
+            <PostList />
+        </div>
+    );
 }
 
 export default Home;
