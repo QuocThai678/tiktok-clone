@@ -1,3 +1,5 @@
+import { memo } from 'react';
+import PropTypes from 'prop-types';
 import { useImperativeHandle, useRef } from 'react';
 import { forwardRef } from 'react';
 import style from './PostList.module.scss';
@@ -95,4 +97,12 @@ const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay
     );
 });
 
-export default PostItem;
+PostItem.propTypes = {
+    data: PropTypes.object.isRequired,
+    handleTogglePlay: PropTypes.func.isRequired,
+    handleToggleMuted: PropTypes.func.isRequired,
+    isPlay: PropTypes.bool.isRequired,
+    isMuted: PropTypes.bool.isRequired,
+};
+
+export default memo(PostItem);

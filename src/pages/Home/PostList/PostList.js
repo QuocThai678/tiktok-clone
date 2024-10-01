@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
-import { Pagination, Mousewheel } from 'swiper/modules';
+import { Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 
 import * as videoService from '~/services/videoService';
 import PostItem from './PostItem';
@@ -88,15 +88,15 @@ function PostList() {
         setCurrentVideoIndex(swiper.activeIndex);
     };
 
-    const handleTogglePlay = () => {
+    const handleTogglePlay = useCallback(() => {
         videoRef.current[currenVideoIndex].togglePlay();
         setIsPlay(!isPlay);
-    };
+    }, [currenVideoIndex, isPlay]);
 
-    const handleToggleMuted = () => {
+    const handleToggleMuted = useCallback(() => {
         videoRef.current.forEach((video) => video.toggleMuted());
         setIsMuted(!isMuted);
-    };
+    }, [isMuted]);
 
     return (
         <Swiper
@@ -106,8 +106,9 @@ function PostList() {
             slidesPerView={1}
             spaceBetween={30}
             mousewheel={true}
+            keyboard={{ enabled: true }}
             className={cx('post-list')}
-            modules={[Pagination, Mousewheel]}
+            modules={[Pagination, Mousewheel, Keyboard]}
         >
             {videoForYou.map((data, index) => (
                 <SwiperSlide key={index} style={{ marginBottom: '8px', display: 'flex', alignItems: 'flex-end' }}>
