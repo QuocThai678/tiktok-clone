@@ -139,7 +139,17 @@
     background-color: rgba(255, 255, 255, 0.08);
 }
 
-.loading {
+.loadingItem {
+    position: absolute;
+    bottom: 50%;
+    right: 50%;
+    display: flex;
+    align-items: center;
+    z-index: 1;
+    transform: translate(50%, 50%);
+}
+
+.loadingList {
     position: absolute;
     bottom: 0;
     right: 16%;
@@ -148,7 +158,8 @@
     z-index: 1;
 }
 
-.loading div {
+.loadingList,
+.loadingItem div {
     width: 16px;
     aspect-ratio: 1;
     border-radius: 50%;
@@ -157,12 +168,14 @@
     position: relative;
 }
 
-.loading div:nth-child(1) {
+.loadingList,
+.loadingItem div:nth-child(1) {
     background: #fe2c55;
     animation: clockwise 1200ms infinite linear;
 }
 
-.loading div:nth-child(2) {
+.loadingList,
+.loadingItem div:nth-child(2) {
     mix-blend-mode: darken;
     background: #25f4ee;
     margin-left: -5px;

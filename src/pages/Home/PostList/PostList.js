@@ -32,7 +32,7 @@ const randomPage = () => {
 function PostList() {
     const videoRef = useRef([]);
     const [currenVideoIndex, setCurrentVideoIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [page, setPage] = useState(randomPage());
     const [isPlay, setIsPlay] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
@@ -124,7 +124,7 @@ function PostList() {
             ))}
 
             {loading && (
-                <div className={cx('loading')}>
+                <div className={cx('loadingList')}>
                     <div />
                     <div />
                 </div>

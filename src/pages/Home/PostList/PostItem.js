@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useImperativeHandle, useRef } from 'react';
 import { forwardRef } from 'react';
@@ -12,6 +12,31 @@ const cx = classNames.bind(style);
 
 const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay, isMuted }, ref) => {
     const videoRef = useRef();
+    const [isLoading, setIsLoading] = useState(false);
+    useEffect(() => {
+        const currentVideo = videoRef.current;
+        const handleWaiting = () => {
+            setIsLoading(true);
+        };
+        const handleCanPlay = () => {
+            setIsLoading(false);
+        };
+        const handleError = (err) => {
+            console.log(err);
+            setIsLoading(false);
+        };
+        currentVideo.addEventListener('waiting', handleWaiting);
+        currentVideo.addEventListener('stalled', handleWaiting);
+        currentVideo.addEventListener('canplay', handleCanPlay);
+        currentVideo.addEventListener('error', handleError);
+
+        return () => {
+            currentVideo.removeEventListener('waiting', handleWaiting);
+            currentVideo.removeEventListener('canplay', handleCanPlay);
+            currentVideo.removeEventListener('stalled', handleWaiting);
+            currentVideo.removeEventListener('error', handleError);
+        };
+    }, []);
 
     useImperativeHandle(ref, () => ({
         play() {
@@ -55,6 +80,13 @@ const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay
                     <h4>{data.user.nickname}</h4>
                     <p>{data.description}</p>
                 </div>
+
+                {isLoading && (
+                    <div className={cx('loadingItem')}>
+                        <div />
+                        <div />
+                    </div>
+                )}
             </div>
 
             <div className={cx('actions')}>
