@@ -11,42 +11,96 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(style);
 
+let paged = [];
+
+const randomPage = () => {
+    const allPost = 43;
+
+    if (paged.length >= allPost) {
+        paged = [];
+    }
+    let randomPage;
+    do {
+        randomPage = Math.floor(Math.random() * allPost);
+    } while (paged.includes(randomPage));
+
+    paged.push(randomPage);
+
+    return randomPage;
+};
+
 function PostList() {
     const videoRef = useRef([]);
+    const [currenVideoIndex, setCurrentVideoIndex] = useState(0);
+    const [loading, setLoading] = useState(true);
+    const [page, setPage] = useState(randomPage());
+    const [isPlay, setIsPlay] = useState(true);
+    const [isMuted, setIsMuted] = useState(true);
     const [videoForYou, setVideoForYou] = useState([]);
 
     useEffect(() => {
         const fetchApi = async () => {
             try {
-                const videoList = await videoService.getListVideo('for-you', 1);
-                setVideoForYou(videoList);
+                setLoading(true);
+                const videoList = await videoService.getListVideo('for-you', page);
+                setVideoForYou((prev) => [...prev, ...videoList]);
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }
         };
 
         fetchApi();
-    }, []);
+    }, [page]);
 
-    const handlePlayVideo = (swiper) => {
-        if (videoRef.length > 0) {
-            videoRef.current[swiper.activeIndex].play();
+    useEffect(() => {
+        if (videoForYou.length > 0) {
+            videoRef.current[0].play();
+            setIsPlay(true);
         }
-    };
+    }, [videoForYou.length]);
 
-    const handleChangeVideo = (swiper) => {
+    useEffect(() => {
+        if (videoForYou.length > 0 && !isMuted) {
+            videoRef.current.forEach((video) => video.unmuted());
+        }
+    }, [isMuted, videoForYou.length]);
+
+    useEffect(() => {
         videoRef.current.forEach((video, index) => {
-            if (index === swiper.activeIndex) {
+            if (index === currenVideoIndex) {
                 video.play();
+                setIsPlay(true);
             } else {
                 video.pause();
             }
         });
+    }, [currenVideoIndex]);
+
+    const loadMorePost = () => {
+        if (videoForYou.length > 0) {
+            console.log('loading...');
+            setPage(randomPage());
+        }
+    };
+
+    const handleChangeVideo = (swiper) => {
+        setCurrentVideoIndex(swiper.activeIndex);
+    };
+
+    const handleTogglePlay = () => {
+        videoRef.current[currenVideoIndex].togglePlay();
+        setIsPlay(!isPlay);
+    };
+
+    const handleToggleMuted = () => {
+        videoRef.current.forEach((video) => video.toggleMuted());
+        setIsMuted(!isMuted);
     };
 
     return (
         <Swiper
-            onSwiper={handlePlayVideo}
+            onReachEnd={loadMorePost}
             onSlideChange={handleChangeVideo}
             direction="vertical"
             slidesPerView={1}
@@ -57,9 +111,23 @@ function PostList() {
         >
             {videoForYou.map((data, index) => (
                 <SwiperSlide key={index} style={{ marginBottom: '8px', display: 'flex', alignItems: 'flex-end' }}>
-                    <PostItem index={index} ref={videoRef} data={data} />
+                    <PostItem
+                        handleTogglePlay={handleTogglePlay}
+                        handleToggleMuted={handleToggleMuted}
+                        isMuted={isMuted}
+                        isPlay={isPlay}
+                        ref={(el) => (videoRef.current[index] = el)}
+                        data={data}
+                    />
                 </SwiperSlide>
             ))}
+
+            {loading && (
+                <div className={cx('loading')}>
+                    <div />
+                    <div />
+                </div>
+            )}
         </Swiper>
     );
 }

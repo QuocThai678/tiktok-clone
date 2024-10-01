@@ -1,16 +1,54 @@
+import { useImperativeHandle, useRef } from 'react';
 import { forwardRef } from 'react';
 import style from './PostList.module.scss';
 import classNames from 'classnames/bind';
 
 import Image from '~/component/Images';
-import { Heart, Comment, BookMark, Share, Plus } from '~/component/Icons';
+import { Heart, Comment, BookMark, Share, Plus, UnMuted, Muted, Play, Pause } from '~/component/Icons';
 
 const cx = classNames.bind(style);
-const PostItem = forwardRef(({ index, data }, ref) => {
+
+const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay, isMuted }, ref) => {
+    const videoRef = useRef();
+
+    useImperativeHandle(ref, () => ({
+        play() {
+            videoRef.current.play();
+        },
+        pause() {
+            videoRef.current.pause();
+        },
+
+        togglePlay() {
+            if (videoRef.current.paused) {
+                videoRef.current.play();
+            } else {
+                videoRef.current.pause();
+            }
+        },
+
+        unmuted() {
+            videoRef.current.muted = false;
+        },
+
+        toggleMuted() {
+            videoRef.current.muted = !videoRef.current.muted;
+        },
+    }));
+
     return (
         <div className={cx('post-item')}>
             <div className={cx('video')}>
-                <video muted loop ref={(el) => (ref.current[index] = el)} src={data.file_url} />
+                <div className={cx('controls')}>
+                    <div onClick={handleToggleMuted} className={cx('control-item')}>
+                        {isMuted ? <UnMuted /> : <Muted />}
+                    </div>
+
+                    <div onClick={handleTogglePlay} className={cx('control-item')}>
+                        {isPlay ? <Pause /> : <Play />}
+                    </div>
+                </div>
+                <video muted loop ref={videoRef} src={data.file_url} />
                 <div className={cx('info')}>
                     <h4>{data.user.nickname}</h4>
                     <p>{data.description}</p>
