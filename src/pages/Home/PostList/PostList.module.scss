@@ -311,7 +311,7 @@
     z-index: 1;
 }
 
-.loadingList,
+.loadingList div,
 .loadingItem div {
     width: 16px;
     aspect-ratio: 1;
@@ -321,13 +321,13 @@
     position: relative;
 }
 
-.loadingList,
+.loadingList div:nth-child(1),
 .loadingItem div:nth-child(1) {
     background: #fe2c55;
     animation: clockwise 1200ms infinite linear;
 }
 
-.loadingList,
+.loadingList div:nth-child(2),
 .loadingItem div:nth-child(2) {
     mix-blend-mode: darken;
     background: #25f4ee;
