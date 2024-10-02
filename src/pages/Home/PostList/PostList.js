@@ -79,7 +79,6 @@ function PostList() {
 
     const loadMorePost = () => {
         if (videoForYou.length > 0) {
-            console.log('loading...');
             setPage(randomPage());
         }
     };

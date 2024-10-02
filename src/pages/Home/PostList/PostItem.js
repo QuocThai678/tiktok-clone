@@ -13,30 +13,43 @@ const cx = classNames.bind(style);
 const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay, isMuted }, ref) => {
     const videoRef = useRef();
     const [isLoading, setIsLoading] = useState(false);
+    const [progress, setProgress] = useState(0);
+
     useEffect(() => {
         const currentVideo = videoRef.current;
-        const handleWaiting = () => {
-            setIsLoading(true);
-        };
+
+        const handleWaiting = () => setIsLoading(true);
         const handleCanPlay = () => {
             setIsLoading(false);
+        };
+        const handleTimeUpdate = () => {
+            setProgress(Math.ceil((currentVideo.currentTime / currentVideo.duration) * 100));
         };
         const handleError = (err) => {
             console.log(err);
             setIsLoading(false);
         };
+
         currentVideo.addEventListener('waiting', handleWaiting);
         currentVideo.addEventListener('stalled', handleWaiting);
         currentVideo.addEventListener('canplay', handleCanPlay);
+        currentVideo.addEventListener('timeupdate', handleTimeUpdate);
         currentVideo.addEventListener('error', handleError);
 
         return () => {
             currentVideo.removeEventListener('waiting', handleWaiting);
             currentVideo.removeEventListener('canplay', handleCanPlay);
             currentVideo.removeEventListener('stalled', handleWaiting);
+            currentVideo.removeEventListener('timeupdate', handleTimeUpdate);
             currentVideo.removeEventListener('error', handleError);
         };
     }, []);
+
+    const handleSeek = (e) => {
+        const seekTime = (e.target.value / 100) * videoRef.current.duration;
+        videoRef.current.currentTime = seekTime;
+        setProgress(Math.ceil(e.target.value));
+    };
 
     useImperativeHandle(ref, () => ({
         play() {
@@ -45,7 +58,6 @@ const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay
         pause() {
             videoRef.current.pause();
         },
-
         togglePlay() {
             if (videoRef.current.paused) {
                 videoRef.current.play();
@@ -53,11 +65,9 @@ const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay
                 videoRef.current.pause();
             }
         },
-
         unmuted() {
             videoRef.current.muted = false;
         },
-
         toggleMuted() {
             videoRef.current.muted = !videoRef.current.muted;
         },
@@ -75,6 +85,18 @@ const PostItem = forwardRef(({ data, handleTogglePlay, handleToggleMuted, isPlay
                         {isPlay ? <Pause /> : <Play />}
                     </div>
                 </div>
+
+                <input
+                    type="range"
+                    min="0"
+                    max="100"
+                    value={progress}
+                    onInput={handleSeek}
+                    className={cx('seek-bar')}
+                    aria-label="Seek through video"
+                />
+                <div className={cx('range')} style={{ width: `${progress}%` }} />
+                <div className={cx('range-container')} />
                 <video muted loop ref={videoRef} src={data.file_url} />
                 <div className={cx('info')}>
                     <h4>{data.user.nickname}</h4>
