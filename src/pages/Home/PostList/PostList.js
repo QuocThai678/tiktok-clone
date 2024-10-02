@@ -37,6 +37,8 @@ function PostList() {
     const [isPlay, setIsPlay] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
     const [videoForYou, setVideoForYou] = useState([]);
+    const [volumeValue, setVolumeValue] = useState(0);
+    const [preVolume, setPreVolume] = useState(100);
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -54,10 +56,11 @@ function PostList() {
     }, [page]);
 
     useEffect(() => {
-        if (videoForYou.length > 0) {
-            videoRef.current[0].play();
+        if (videoForYou.length > 0 && videoForYou.length < 16) {
+            videoRef.current[currenVideoIndex].play();
             setIsPlay(true);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [videoForYou.length]);
 
     useEffect(() => {
@@ -69,7 +72,7 @@ function PostList() {
     useEffect(() => {
         videoRef.current.forEach((video, index) => {
             if (index === currenVideoIndex) {
-                video.play();
+                video.replay();
                 setIsPlay(true);
             } else {
                 video.pause();
@@ -87,6 +90,22 @@ function PostList() {
         setCurrentVideoIndex(swiper.activeIndex);
     };
 
+    const hanleChangeVolume = (e) => {
+        setVolumeValue(e.target.value);
+        videoRef.current.forEach((video) => {
+            video.changeVolume(e.target.value);
+        });
+        if (e.target.value === '0') {
+            setIsMuted(true);
+            setPreVolume(0);
+            videoRef.current.forEach((video) => video.muted());
+        } else {
+            if (isMuted) {
+                setIsMuted(false);
+            }
+        }
+    };
+
     const handleTogglePlay = useCallback(() => {
         videoRef.current[currenVideoIndex].togglePlay();
         setIsPlay(!isPlay);
@@ -95,7 +114,16 @@ function PostList() {
     const handleToggleMuted = useCallback(() => {
         videoRef.current.forEach((video) => video.toggleMuted());
         setIsMuted(!isMuted);
-    }, [isMuted]);
+
+        setVolumeValue(() => {
+            if (!isMuted) {
+                setPreVolume(volumeValue);
+                return 0;
+            } else {
+                return preVolume;
+            }
+        });
+    }, [isMuted, preVolume, volumeValue]);
 
     return (
         <Swiper
@@ -112,8 +140,10 @@ function PostList() {
             {videoForYou.map((data, index) => (
                 <SwiperSlide key={index} style={{ marginBottom: '8px', display: 'flex', alignItems: 'flex-end' }}>
                     <PostItem
+                        hanleChangeVolume={hanleChangeVolume}
                         handleTogglePlay={handleTogglePlay}
                         handleToggleMuted={handleToggleMuted}
+                        volumeValue={volumeValue}
                         isMuted={isMuted}
                         isPlay={isPlay}
                         ref={(el) => (videoRef.current[index] = el)}

@@ -758,9 +758,10 @@ export const Plus = ({ className }) => {
     );
 };
 
-export const UnMuted = ({ className }) => {
+export const UnMuted = ({ className, onClick }) => {
     return (
         <svg
+            onClick={onClick}
             className={className}
             width="24"
             datae2e=""
@@ -778,9 +779,10 @@ export const UnMuted = ({ className }) => {
     );
 };
 
-export const Muted = ({ className }) => {
+export const Muted = ({ className, onClick }) => {
     return (
         <svg
+            onClick={onClick}
             className={className}
             width="24"
             datae2e=""
