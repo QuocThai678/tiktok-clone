@@ -59,9 +59,13 @@ function PostList() {
 
     useEffect(() => {
         if (videoForYou.length > 0 && videoForYou.length < 16) {
-            videoRef.current.forEach((video) => video.muted());
-            videoRef.current[currenVideoIndex].changeVolume(preVolume);
+            const navigationType = performance.getEntriesByType('navigation')[0].type;
+            if (navigationType === 'navigate') {
+                setPreVolume(100);
+                localStorage.setItem('preVolume', 100);
+            }
 
+            videoRef.current.forEach((video) => video.muted());
             videoRef.current[currenVideoIndex].play();
             setIsPlay(true);
         }
@@ -98,12 +102,14 @@ function PostList() {
     const hanleChangeVolume = (e) => {
         const numValue = Number(e.target.value);
         setVolumeValue(numValue);
+
         localStorage.setItem('preVolume', numValue);
         videoRef.current.forEach((video) => {
             video.changeVolume(numValue);
         });
         if (numValue === 0) {
             setIsMuted(true);
+
             setPreVolume(0);
             localStorage.setItem('preVolume', 0);
             videoRef.current.forEach((video) => video.muted());
@@ -126,10 +132,15 @@ function PostList() {
         setVolumeValue(() => {
             if (!isMuted) {
                 setPreVolume(volumeValue);
+
                 localStorage.setItem('preVolume', volumeValue);
+
+                videoRef.current.forEach((video) => video.changeVolume(0));
+
                 return 0;
             } else {
-                console.log(preVolume);
+                videoRef.current.forEach((video) => video.changeVolume(preVolume));
+
                 return preVolume;
             }
         });
