@@ -10,7 +10,7 @@ import style from './PostList.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(style);
-
+let first = true;
 let paged = [];
 
 const randomPage = () => {
@@ -60,9 +60,11 @@ function PostList() {
     useEffect(() => {
         if (videoForYou.length > 0 && videoForYou.length < 16) {
             const navigationType = performance.getEntriesByType('navigation')[0].type;
-            if (navigationType === 'navigate') {
+
+            if (navigationType === 'navigate' && first) {
                 setPreVolume(100);
                 localStorage.setItem('preVolume', 100);
+                first = false;
             }
 
             videoRef.current.forEach((video) => video.muted());
