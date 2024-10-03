@@ -122,7 +122,7 @@ const PostItem = forwardRef(
                     <div className={cx('range-container')} />
                     <video loop ref={videoRef} src={data.file_url} />
                     <div className={cx('info')}>
-                        <h4>{data.user.nickname}</h4>
+                        <Link to={`/@${data.user.nickname}`}>{data.user.nickname}</Link>
                         <p>{data.description}</p>
                     </div>
 
