@@ -38,7 +38,9 @@ function PostList() {
     const [isMuted, setIsMuted] = useState(true);
     const [videoForYou, setVideoForYou] = useState([]);
     const [volumeValue, setVolumeValue] = useState(0);
-    const [preVolume, setPreVolume] = useState(100);
+    const [preVolume, setPreVolume] = useState(
+        localStorage.getItem('preVolume') === null ? 100 : Number(localStorage.getItem('preVolume')),
+    );
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -57,6 +59,9 @@ function PostList() {
 
     useEffect(() => {
         if (videoForYou.length > 0 && videoForYou.length < 16) {
+            videoRef.current.forEach((video) => video.muted());
+            videoRef.current[currenVideoIndex].changeVolume(preVolume);
+
             videoRef.current[currenVideoIndex].play();
             setIsPlay(true);
         }
@@ -91,13 +96,16 @@ function PostList() {
     };
 
     const hanleChangeVolume = (e) => {
-        setVolumeValue(e.target.value);
+        const numValue = Number(e.target.value);
+        setVolumeValue(numValue);
+        localStorage.setItem('preVolume', numValue);
         videoRef.current.forEach((video) => {
-            video.changeVolume(e.target.value);
+            video.changeVolume(numValue);
         });
-        if (e.target.value === '0') {
+        if (numValue === 0) {
             setIsMuted(true);
             setPreVolume(0);
+            localStorage.setItem('preVolume', 0);
             videoRef.current.forEach((video) => video.muted());
         } else {
             if (isMuted) {
@@ -118,8 +126,10 @@ function PostList() {
         setVolumeValue(() => {
             if (!isMuted) {
                 setPreVolume(volumeValue);
+                localStorage.setItem('preVolume', volumeValue);
                 return 0;
             } else {
+                console.log(preVolume);
                 return preVolume;
             }
         });

@@ -120,7 +120,7 @@ const PostItem = forwardRef(
                     />
                     <div className={cx('range')} style={{ width: `${progress}%` }} />
                     <div className={cx('range-container')} />
-                    <video muted loop ref={videoRef} src={data.file_url} />
+                    <video loop ref={videoRef} src={data.file_url} />
                     <div className={cx('info')}>
                         <h4>{data.user.nickname}</h4>
                         <p>{data.description}</p>
