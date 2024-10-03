@@ -334,6 +334,69 @@
     animation: counter-clockwise 1200ms infinite linear;
 }
 
+.profile-container {
+    width: 320px;
+    box-sizing: border-box;
+    padding: 20px;
+    background: rgb(37, 37, 37);
+    box-shadow: unset;
+    border-radius: 8px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.header-container img {
+    width: 44px;
+    height: 44px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.nickname {
+    color: var(--text-color);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 24px;
+}
+
+.name {
+    color: var(--text-color);
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.follow {
+    display: flex;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.follow-item {
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+}
+.follow-item span {
+    font-weight: 700;
+    margin-right: 6px;
+    font-size: 17px;
+    line-height: 20px;
+    display: inline-block;
+}
+
+.follow-item p {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 17px;
+    line-height: 20px;
+    display: inline-block;
+}
+
 @keyframes clockwise {
     0% {
         transform: translateX(0);

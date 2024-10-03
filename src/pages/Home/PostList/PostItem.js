@@ -1,3 +1,5 @@
+import Tippy from '@tippyjs/react/headless';
+
 import { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { useImperativeHandle, useRef } from 'react';
@@ -7,6 +9,8 @@ import classNames from 'classnames/bind';
 
 import Image from '~/component/Images';
 import { Heart, Comment, BookMark, Share, Plus, UnMuted, Muted, Play, Pause } from '~/component/Icons';
+import Button from '~/component/Button';
+import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(style);
 
@@ -131,12 +135,52 @@ const PostItem = forwardRef(
                 </div>
 
                 <div className={cx('actions')}>
-                    <div className={cx('avt')}>
-                        <Image src={data.user.avatar} alt={data.user.nickname} />
-                        <span className={cx('quick-follow')}>
-                            <Plus />
-                        </span>
-                    </div>
+                    <Tippy
+                        interactive
+                        delay={[500, 500]}
+                        offset={[-10, 20]}
+                        appendTo={document.body}
+                        placement="bottom-start"
+                        render={(attrs) => (
+                            <div className={cx('profile-container')} {...attrs} tabIndex={'-1'}>
+                                <div className={cx('header-container')}>
+                                    <Link to={`/@${data.user.nickname}`}>
+                                        <Image src={data.user.avatar} alt={data.user.nickname} />
+                                    </Link>
+                                    <Button outline small>
+                                        Follow
+                                    </Button>
+                                </div>
+
+                                <Link to={`/@${data.user.nickname}`} className={cx('nickname')}>
+                                    {data.user.nickname}
+                                </Link>
+                                <br />
+                                <Link to={`/@${data.user.nickname}`} className={cx('name')}>
+                                    {`${data.user.first_name} ${data.user.last_name}`}
+                                </Link>
+
+                                <div className={cx('follow')}>
+                                    <div className={cx('follow-item')}>
+                                        <span>{data.user.followings_count}</span>
+                                        <p>Follower</p>
+                                    </div>
+
+                                    <div className={cx('follow-item')}>
+                                        <span>{data.user.likes_count}</span>
+                                        <p>Thích</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                    >
+                        <div className={cx('avt')}>
+                            <Image src={data.user.avatar} alt={data.user.nickname} />
+                            <span className={cx('quick-follow')}>
+                                <Plus />
+                            </span>
+                        </div>
+                    </Tippy>
 
                     <div className={cx('action-item')}>
                         <div className={cx('icon')}>
