@@ -9,7 +9,7 @@ const cx = classNames.bind(style);
 
 function AccountItem({ data }) {
     return (
-        <Link to={`/${data.nickname}`} className={cx('account-item')}>
+        <Link to={`/@${data.nickname}`} className={cx('account-item')}>
             <Image className={cx('avatar')} src={data.avatar} alt={data.nickname} />
 
             <div className={cx('info')}>
